@@ -22,7 +22,6 @@ class ShippersController < ApplicationController
 
   private
   def shipper_params
-    binding.pry
     params.require(:shipper).permit Shipper::SHIPPER_PARAMS,
       user_attributes: User::USER_PARAMS
   end
