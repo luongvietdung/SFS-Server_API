@@ -1,7 +1,7 @@
 class CreateShops < ActiveRecord::Migration
   def change
     create_table :shops do |t|
-      t.decimal :money, precision: 5, scale: 2
+      t.decimal :money, precision: 10, scale: 2
       t.string :product_name
       t.string :name
       t.text :address

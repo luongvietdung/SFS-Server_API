@@ -3,8 +3,7 @@ class User < ActiveRecord::Base
 
   USER_PARAMS = [:phone]
 
-  belongs_to :accountable, polymorphic: true, dependent: :destroy,
-    required: true, autosave: true
+  belongs_to :accountable, polymorphic: true, dependent: :destroy
   has_one :location, dependent: :destroy
 
   accepts_nested_attributes_for :accountable
