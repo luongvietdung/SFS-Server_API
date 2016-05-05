@@ -22,8 +22,7 @@ class ShopsController < ApplicationController
 
   private
   def shop_params
-    params.require(:shop).permit Shop::SHOP_PARAMS
-      .merge(user_attributes: User::USER_PARAMS)
+    params.require(:shop).permit Shop::SHOP_PARAMS, user_attributes: User::USER_PARAMS
   end
 
   def shop_update_params

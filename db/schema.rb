@@ -24,25 +24,25 @@ ActiveRecord::Schema.define(version: 20160430184225) do
   add_index "locations", ["user_id"], name: "index_locations_on_user_id", using: :btree
 
   create_table "shippers", force: :cascade do |t|
-    t.decimal  "money",                    precision: 5, scale: 2
-    t.decimal  "fee",                      precision: 5, scale: 2
+    t.decimal  "money",                    precision: 10, scale: 2
+    t.decimal  "fee",                      precision: 10, scale: 2
     t.string   "name",       limit: 255
     t.text     "address",    limit: 65535
     t.integer  "user_id",    limit: 4
-    t.datetime "created_at",                                       null: false
-    t.datetime "updated_at",                                       null: false
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
   end
 
   add_index "shippers", ["user_id"], name: "index_shippers_on_user_id", using: :btree
 
   create_table "shops", force: :cascade do |t|
-    t.decimal  "money",                      precision: 5, scale: 2
+    t.decimal  "money",                      precision: 10, scale: 2
     t.string   "product_name", limit: 255
     t.string   "name",         limit: 255
     t.text     "address",      limit: 65535
     t.integer  "user_id",      limit: 4
-    t.datetime "created_at",                                         null: false
-    t.datetime "updated_at",                                         null: false
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
   end
 
   add_index "shops", ["user_id"], name: "index_shops_on_user_id", using: :btree

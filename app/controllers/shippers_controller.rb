@@ -22,8 +22,9 @@ class ShippersController < ApplicationController
 
   private
   def shipper_params
-    params.require(:shipper).permit Shipper::SHIPPER_PARAMS
-      .merge(user_attributes: User::USER_PARAMS)
+    binding.pry
+    params.require(:shipper).permit Shipper::SHIPPER_PARAMS,
+      user_attributes: User::USER_PARAMS
   end
 
   def shipper_update_params
