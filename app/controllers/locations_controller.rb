@@ -1,6 +1,5 @@
 class LocationsController < ApplicationController
-  before_action :user, only: [:create]
-  before_action :location, only: [:update]
+  before_action :user, only: [:create, :update]
 
   def index
     type = params[:type] || Shipper.name
@@ -18,22 +17,14 @@ class LocationsController < ApplicationController
 
   def update
     if @user.location.update location_params
-      render json: @user.location
+      render json: @location
     else
     end
-  end
-
-  def show
-    render json: @location
   end
 
   private
   def location_params
     params.require(:location).permit Location::LOCATION_PARAMS
-  end
-
-  def location
-    @location = Location.find params[:id]
   end
 
   def user
