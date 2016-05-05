@@ -2,7 +2,7 @@ class ShopsController < ApplicationController
   before_action :shop, only: [:update, :show]
 
   def create
-    @shop = Shop.new shipper_params
+    @shop = Shop.new shop_params
     if @shop.save
       render json: @shop
     else
@@ -10,7 +10,7 @@ class ShopsController < ApplicationController
   end
 
   def update
-    if @shop.update shipper_update_params
+    if @shop.update shop_update_params
       render json: @shop
     else
     end
