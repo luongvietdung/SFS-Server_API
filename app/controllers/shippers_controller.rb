@@ -4,17 +4,20 @@ class ShippersController < ApplicationController
   def create
     @shipper = Shipper.new shipper_params
     if @shipper.save
+      render json: @shipper
     else
     end
   end
 
   def update
     if @shipper.update shipper_update_params
+      render json: @shipper
     else
     end
   end
 
   def show
+    render json: @shipper
   end
 
   private

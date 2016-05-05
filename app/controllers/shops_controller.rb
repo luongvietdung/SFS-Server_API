@@ -4,17 +4,20 @@ class ShopsController < ApplicationController
   def create
     @shop = Shop.new shipper_params
     if @shop.save
+      render json: @shop
     else
     end
   end
 
   def update
     if @shop.update shipper_update_params
+      render json: @shop
     else
     end
   end
 
   def show
+    render json: @shop
   end
 
   private
