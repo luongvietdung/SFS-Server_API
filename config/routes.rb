@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   mount_devise_token_auth_for 'User', at: 'auth',
-    skip: [:omniauth_callbacks, :confirm_callbacks, :register_callbacks, :recover_callbacks]
+    skip: [:omniauth_callbacks, :confirms, :registers, :recovers, :token_validations],
+    controllers: {sessions: 'sessions'}
   namespace :api do
     resources :users do
       resources :locations, only: [:create, :update]

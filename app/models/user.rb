@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   ACCOUNTABLES = [Shipper, Shop]
 
-  USER_PARAMS = [:phone, :password, :password_confirmation, :email]
+  USER_PARAMS = [:phone, :password, :password_confirmation]
 
   belongs_to :accountable, polymorphic: true
   has_one :location
@@ -28,11 +28,13 @@ class User < ActiveRecord::Base
     validates :phone, presence: true, uniqueness: true
   end
 
+  def token_validation_response
+    UserSerializer.root = false
+    UserSerializer.new(self).as_json
+  end
+
   protected
   def sync_uid
     self.uid = self.phone
-  end
-
-  def unique_email_user
   end
 end
