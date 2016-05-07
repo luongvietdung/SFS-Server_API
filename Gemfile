@@ -13,6 +13,8 @@ gem "faker"
 
 gem "spring", :group => :development
 
+gem "devise_token_auth"
+
 group :development, :test do
   gem "web-console", "~> 2.0"
   gem "rails-erd"

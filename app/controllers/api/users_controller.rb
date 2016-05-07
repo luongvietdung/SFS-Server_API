@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class Api::UsersController < ApiController
   def index
     type = params[:type] || Shipper.name
     @users = User.by_accountable_type(type).includes :location, :accountable
