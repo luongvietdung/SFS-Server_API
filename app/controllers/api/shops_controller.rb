@@ -1,4 +1,6 @@
-class ShopsController < ApplicationController
+class Api::ShopsController < ApiController
+  skip_before_action :authenticate_user!, only: [:create]
+
   before_action :shop, only: [:update, :show]
 
   def create

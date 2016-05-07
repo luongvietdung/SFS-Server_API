@@ -1,4 +1,4 @@
-class LocationsController < ApplicationController
+class Api::LocationsController < ApiController
   before_action :user, only: [:create]
   before_action :location, only: [:update, :show]
 

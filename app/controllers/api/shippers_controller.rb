@@ -1,4 +1,6 @@
-class ShippersController < ApplicationController
+class Api::ShippersController < ApiController
+  skip_before_action :authenticate_user!, only: [:create]
+
   before_action :shipper, only: [:update, :show]
 
   def create
