@@ -1,3 +1,3 @@
-class ShopSerializer < ShortShopSerializer
-  has_one :user, as: :accountable, serializer: ShortUserSerializer
+class ShopSerializer < ApplicationSerializer
+  attributes :id, :money, :product_name, :name, :address
 end

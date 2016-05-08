@@ -1,3 +1,3 @@
-class ShipperSerializer < ShortShipperSerializer
-  has_one :user, as: :accountable, serializer: ShortUserSerializer
+class ShipperSerializer < ApplicationSerializer
+  attributes :id, :money, :fee, :name, :address
 end

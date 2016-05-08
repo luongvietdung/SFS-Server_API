@@ -1,3 +1,3 @@
-class ShortLocationSerializer < ActiveModel::Serializer
+class ShortLocationSerializer < ApplicationSerializer
   attributes :id, :latitude, :longitude, :user_id
 end
