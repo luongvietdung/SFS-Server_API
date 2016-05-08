@@ -29,8 +29,7 @@ class User < ActiveRecord::Base
   end
 
   def token_validation_response
-    UserSerializer.root = false
-    UserSerializer.new(self).as_json
+    FullUserSerializer.new(self).as_json
   end
 
   protected

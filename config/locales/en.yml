@@ -20,4 +20,6 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  create_fail: "Cannot create %{model}!"
+  update_fail: "Cannot update %{model} for %{name}!"
+  access_denied: "Access denied!"

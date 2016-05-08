@@ -1,25 +1,27 @@
 class Api::ShippersController < ApiController
   skip_before_action :authenticate_user!, only: [:create]
 
-  before_action :shipper, only: [:update, :show]
-
+  before_action :shipper, only: [:show]
+  before_action :updatable, only: [:update]
   def create
     @shipper = Shipper.new shipper_params
     if @shipper.save
-      render json: @shipper
+      render json: @shipper, serializer: FullShipperSerializer
     else
+      render_create_fail Shipper.name
     end
   end
 
   def update
     if @shipper.update shipper_update_params
-      render json: @shipper
+      render json: @shipper, serializer: FullShipperSerializer
     else
+      render_update_fail Shipper.name
     end
   end
 
   def show
-    render json: @shipper
+    render json: @shipper, serializer: FullShipperSerializer
   end
 
   private
@@ -34,5 +36,9 @@ class Api::ShippersController < ApiController
 
   def shipper
     @shipper = Shipper.find params[:id]
+  end
+
+  def updatable
+    render_access_denied unless current_user == shipper.try(:user)
   end
 end

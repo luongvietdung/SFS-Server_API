@@ -1,4 +1,3 @@
-class ShortUserSerializer < ActiveModel::Serializer
+class ShortUserSerializer < ApplicationSerializer
   attributes :id, :phone, :status, :uid
-  has_one :location, serializer: ShortLocationSerializer
 end

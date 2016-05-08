@@ -1,6 +1,7 @@
 class Api::LocationsController < ApiController
   before_action :user, only: [:create]
-  before_action :location, only: [:update, :show]
+  before_action :updatable, only: [:create, :update]
+  before_action :location, only: [:show]
 
   def index
     type = params[:type] || Shipper.name
@@ -13,13 +14,15 @@ class Api::LocationsController < ApiController
     if @location.save
       render json: @location
     else
+      render_create_fail Location.name
     end
   end
 
   def update
-    if @user.location.update location_params
+    if @location.update location_params
       render json: @user.location
     else
+      render_update_fail Location.name
     end
   end
 
@@ -38,5 +41,9 @@ class Api::LocationsController < ApiController
 
   def user
     @user = User.find params[:user_id]
+  end
+
+  def updatable
+    render_access_denied unless current_user == user
   end
 end

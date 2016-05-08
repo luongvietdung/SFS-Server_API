@@ -1,25 +1,28 @@
 class Api::ShopsController < ApiController
   skip_before_action :authenticate_user!, only: [:create]
 
-  before_action :shop, only: [:update, :show]
+  before_action :shop, only: [:show]
+  before_action :updatable, only: [:update]
 
   def create
     @shop = Shop.new shop_params
     if @shop.save
-      render json: @shop
+      render json: @shop, serializer: FullShopSerializer
     else
+      render_create_fail Shop.name
     end
   end
 
   def update
     if @shop.update shop_update_params
-      render json: @shop
+      render json: @shop, serializer: FullShopSerializer
     else
+      render_update_fail Shop.name
     end
   end
 
   def show
-    render json: @shop
+    render json: @shop, serializer: FullShopSerializer
   end
 
   private
@@ -33,5 +36,9 @@ class Api::ShopsController < ApiController
 
   def shop
     @shop = Shop.find params[:id]
+  end
+
+  def updatable
+    render_access_denied unless current_user == shop.try(:user)
   end
 end
