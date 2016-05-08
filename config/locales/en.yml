@@ -20,6 +20,8 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  create_fail: "Cannot create %{model}!"
-  update_fail: "Cannot update %{model} for %{name}!"
-  access_denied: "Access denied!"
+  create_fail: Cannot create %{model}!
+  update_fail: Cannot update %{model} for %{name}!
+  access_denied: Access denied!
+  not_found: The resource you were looking for does not exist
+  errors: We're sorry, but something went wrong. We've been notified about this issue and we'll take a look at it shortly.
