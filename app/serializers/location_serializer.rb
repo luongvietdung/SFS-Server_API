@@ -1,3 +1,3 @@
 class LocationSerializer < ShortLocationSerializer
-  has_one :user
+  has_one :user, serializer: UserLocationSerializer
 end
