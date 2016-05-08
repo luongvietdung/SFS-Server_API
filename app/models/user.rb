@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
   end
 
   def token_validation_response
-    FullUserSerializer.new(self).as_json
+    UserSerializer.new(self).as_json
   end
 
   protected
