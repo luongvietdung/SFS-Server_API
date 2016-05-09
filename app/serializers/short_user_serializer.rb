@@ -1,3 +1,3 @@
 class ShortUserSerializer < ApplicationSerializer
-  attributes :id, :phone, :status, :uid
+  attributes :id, :phone, :status, :accountable_id, :accountable_type
 end
