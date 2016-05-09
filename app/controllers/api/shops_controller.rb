@@ -4,10 +4,15 @@ class Api::ShopsController < ApiController
   before_action :shop, only: [:show]
   before_action :updatable, only: [:update]
 
+  def index
+    @shops = Shop.all
+    render json: @shops, each_serializer: FullShopSerializer
+  end
+
   def create
     @shop = Shop.new shop_params
     if @shop.save
-      render json: @shop, serializer: FullShopSerializer
+      redirect_to api_shops_path(@shop)
     else
       render_create_fail Shop.name
     end
@@ -15,7 +20,7 @@ class Api::ShopsController < ApiController
 
   def update
     if @shop.update shop_update_params
-      render json: @shop, serializer: FullShopSerializer
+      redirect_to api_shops_path(@shop)
     else
       render_update_fail Shop.name
     end

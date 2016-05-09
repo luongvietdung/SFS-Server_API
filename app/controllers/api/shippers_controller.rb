@@ -3,10 +3,16 @@ class Api::ShippersController < ApiController
 
   before_action :shipper, only: [:show]
   before_action :updatable, only: [:update]
+
+  def index
+    @shippers = Shipper.all.includes :user
+    render json: @shippers, each_serializer: FullShipperSerializer
+  end
+
   def create
     @shipper = Shipper.new shipper_params
     if @shipper.save
-      render json: @shipper, serializer: FullShipperSerializer
+      redirect_to api_shippers_path(@shipper)
     else
       render_create_fail Shipper.name
     end
@@ -14,7 +20,7 @@ class Api::ShippersController < ApiController
 
   def update
     if @shipper.update shipper_update_params
-      render json: @shipper, serializer: FullShipperSerializer
+      redirect_to api_shippers_path(@shipper)
     else
       render_update_fail Shipper.name
     end

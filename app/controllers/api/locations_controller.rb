@@ -1,18 +1,18 @@
 class Api::LocationsController < ApiController
   before_action :user, only: [:create]
   before_action :updatable, only: [:create, :update]
-  before_action :location, only: [:show]
+  # before_action :location, only: [:show]
 
   def index
     type = params[:type] || Shipper.name
     @locations = Location.locations type
-    render json: @locations
+    render json: @locations, each_serializer: ShortLocationSerializer
   end
 
   def create
     @location = @user.build_location location_params
     if @location.save
-      render json: @location
+      redirect_to api_user_locations_path(@user, @location)
     else
       render_create_fail Location.name
     end
@@ -20,15 +20,15 @@ class Api::LocationsController < ApiController
 
   def update
     if @location.update location_params
-      render json: @user.location
+      render json: @user.location, serializer: ShortLocationSerializer
     else
       render_update_fail Location.name
     end
   end
 
-  def show
-    render json: @location
-  end
+  # def show
+  #   render json: @location, serializer: ShortLocationSerializer
+  # end
 
   private
   def location_params
