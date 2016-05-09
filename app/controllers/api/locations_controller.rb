@@ -3,11 +3,11 @@ class Api::LocationsController < ApiController
   before_action :updatable, only: [:create, :update]
   # before_action :location, only: [:show]
 
-  def index
-    type = params[:type] || Shipper.name
-    @locations = Location.locations type
-    render json: @locations, each_serializer: ShortLocationSerializer
-  end
+  # def index
+  #   type = params[:type] || Shipper.name
+  #   @locations = Location.locations type
+  #   render json: @locations, each_serializer: ShortLocationSerializer
+  # end
 
   def create
     @location = @user.build_location location_params

@@ -1,9 +1,8 @@
 class Api::UsersController < ApiController
-  # def index
-  #   type = params[:type] || Shipper.name
-  #   @users = User.by_accountable_type(type).includes :location, :accountable
-  #   render json: @users
-  # end
+  def index
+    @users = User.all.includes :location
+    render json: @users, each_serializer: UserAccountableSerializer
+  end
 
   before_action :updatable, only: [:update]
   before_action :user, only: [:show]
