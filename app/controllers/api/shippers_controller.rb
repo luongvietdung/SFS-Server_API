@@ -12,7 +12,7 @@ class Api::ShippersController < ApiController
   def create
     @shipper = Shipper.new shipper_params
     if @shipper.save
-      redirect_to api_shippers_path(@shipper)
+      render json: @shipper, serializer: FullShipperSerializer
     else
       render_create_fail Shipper.name
     end
@@ -20,7 +20,7 @@ class Api::ShippersController < ApiController
 
   def update
     if @shipper.update shipper_update_params
-      redirect_to api_shippers_path(@shipper)
+      render json: @shipper, serializer: FullShipperSerializer
     else
       render_update_fail Shipper.name
     end

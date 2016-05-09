@@ -5,5 +5,7 @@ FactoryGirl.define do
     password{"12345678"}
     password_confirmation{"12345678"}
     accountable{|a| a.association([:shipper, :shop].sample)}
+    latitude{Faker::Address.latitude}
+    longitude{Faker::Address.longitude}
   end
 end

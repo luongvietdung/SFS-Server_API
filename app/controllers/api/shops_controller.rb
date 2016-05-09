@@ -12,7 +12,7 @@ class Api::ShopsController < ApiController
   def create
     @shop = Shop.new shop_params
     if @shop.save
-      redirect_to api_shops_path(@shop)
+      render json: @shop, serializer: FullShopSerializer
     else
       render_create_fail Shop.name
     end
@@ -20,7 +20,7 @@ class Api::ShopsController < ApiController
 
   def update
     if @shop.update shop_update_params
-      redirect_to api_shops_path(@shop)
+      render json: @shop, serializer: FullShopSerializer
     else
       render_update_fail Shop.name
     end

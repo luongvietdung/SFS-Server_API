@@ -6,10 +6,10 @@ class User < ActiveRecord::Base
 
   ACCOUNTABLES = [Shipper, Shop]
 
-  USER_PARAMS = [:phone, :password, :password_confirmation]
+  USER_PARAMS = [:phone, :password, :password_confirmation, :latitude, :longitude]
 
   belongs_to :accountable, polymorphic: true
-  has_one :location
+  # has_one :location
 
   before_save :sync_uid
 
