@@ -1,6 +1,6 @@
 class Api::UsersController < ApiController
   def index
-    @users = User.all.includes :location
+    @users = User.all
     render json: @users, each_serializer: UserAccountableSerializer
   end
 

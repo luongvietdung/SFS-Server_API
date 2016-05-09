@@ -48,6 +48,10 @@ class DeviseTokenAuthCreateUsers < ActiveRecord::Migration
       # t.timestamps
       t.timestamps null: false
 
+      # custom
+      t.decimal :latitude, precision: 15, scale: 10
+      t.decimal :longitude, precision: 15, scale: 10
+
     end
 
     # add_index :users, :email

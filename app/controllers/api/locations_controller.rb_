@@ -12,7 +12,7 @@ class Api::LocationsController < ApiController
   def create
     @location = @user.build_location location_params
     if @location.save
-      redirect_to api_user_locations_path(@user, @location)
+      render json: @location, serializer: ShortLocationSerializer
     else
       render_create_fail Location.name
     end
