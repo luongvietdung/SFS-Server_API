@@ -20,7 +20,7 @@ class Api::ShippersController < ApiController
 
   def update
     if @shipper.update(shipper_update_params) && @shipper.user.update(user_params)
-      render json: @shipper, serializer: FullShipperSerializer
+      render json: @shipper.shipper_response
     else
       render_update_fail Shipper.name
     end

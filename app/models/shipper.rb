@@ -5,4 +5,8 @@ class Shipper < ActiveRecord::Base
   SHIPPER_PARAMS = [:money, :fee, :name, :address]
 
   scope :online, ->{joins(:user).merge User.online}
+
+  def shipper_response
+    UserSerializer.new(user).as_json
+  end
 end

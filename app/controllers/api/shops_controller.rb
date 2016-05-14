@@ -20,7 +20,7 @@ class Api::ShopsController < ApiController
 
   def update
     if @shop.update(shop_update_params) && @shop.user.update(user_params)
-      render json: @shop, serializer: FullShopSerializer
+      render json: @shop.shop_response
     else
       render_update_fail Shop.name
     end

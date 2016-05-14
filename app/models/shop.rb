@@ -5,4 +5,8 @@ class Shop < ActiveRecord::Base
   SHOP_PARAMS = [:money, :product_name, :name, :address]
 
   scope :online, ->{joins(:user).merge User.online}
+
+  def shop_response
+    UserSerializer.new(user).as_json
+  end
 end
