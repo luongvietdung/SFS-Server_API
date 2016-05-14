@@ -19,7 +19,7 @@ class Api::ShippersController < ApiController
   end
 
   def update
-    if @shipper.update shipper_update_params
+    if @shipper.update(shipper_update_params) && @shipper.user.update(user_params)
       render json: @shipper, serializer: FullShipperSerializer
     else
       render_update_fail Shipper.name
@@ -46,5 +46,9 @@ class Api::ShippersController < ApiController
 
   def updatable
     render_access_denied unless current_user == shipper.try(:user)
+  end
+
+  def user_params
+    params.require(:shop).permit User::USER_AUTO_UPDATE_PARAMS
   end
 end

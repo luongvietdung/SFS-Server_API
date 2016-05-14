@@ -6,7 +6,8 @@ class User < ActiveRecord::Base
 
   ACCOUNTABLES = [Shipper, Shop]
 
-  USER_PARAMS = [:phone, :password, :password_confirmation, :latitude, :longitude]
+  USER_AUTO_UPDATE_PARAMS = [:latitude, :longitude]
+  USER_PARAMS = [:phone, :password, :password_confirmation] + USER_AUTO_UPDATE_PARAMS
 
   belongs_to :accountable, polymorphic: true
   # has_one :location

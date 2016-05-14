@@ -4,8 +4,8 @@ class Api::UsersController < ApiController
     render json: @users, each_serializer: UserAccountableSerializer
   end
 
+  before_action :user, only: [:show]
   before_action :updatable, only: [:update]
-  before_action :user, only: [:show, :update]
 
   def update
     if @user.update user_params
@@ -21,7 +21,7 @@ class Api::UsersController < ApiController
 
   private
   def updatable
-    render_access_denied unless current_user == @user
+    render_access_denied unless current_user == user
   end
 
   def user_params
