@@ -3,4 +3,6 @@ class Shop < ActiveRecord::Base
   accepts_nested_attributes_for :user
 
   SHOP_PARAMS = [:money, :product_name, :name, :address]
+
+  scope :online, ->{joins(:user).merge User.online}
 end

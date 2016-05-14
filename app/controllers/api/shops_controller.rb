@@ -5,7 +5,7 @@ class Api::ShopsController < ApiController
   before_action :updatable, only: [:update]
 
   def index
-    @shops = Shop.all
+    @shops = Shop.online
     render json: @shops, each_serializer: FullShopSerializer
   end
 
