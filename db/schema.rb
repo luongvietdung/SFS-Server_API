@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160506180157) do
+ActiveRecord::Schema.define(version: 20160514082733) do
 
   create_table "shippers", force: :cascade do |t|
     t.decimal  "money",                    precision: 10, scale: 2
@@ -38,23 +38,23 @@ ActiveRecord::Schema.define(version: 20160506180157) do
   add_index "shops", ["user_id"], name: "index_shops_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "provider",           limit: 255,                             default: "email", null: false
-    t.string   "uid",                limit: 255,                             default: "",      null: false
-    t.string   "encrypted_password", limit: 255,                             default: "",      null: false
-    t.integer  "sign_in_count",      limit: 4,                               default: 0,       null: false
+    t.string   "provider",           limit: 255,   default: "email", null: false
+    t.string   "uid",                limit: 255,   default: "",      null: false
+    t.string   "encrypted_password", limit: 255,   default: "",      null: false
+    t.integer  "sign_in_count",      limit: 4,     default: 0,       null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip", limit: 255
     t.string   "last_sign_in_ip",    limit: 255
-    t.string   "phone",              limit: 255,                                               null: false
-    t.boolean  "status",                                                     default: false
+    t.string   "phone",              limit: 255,                     null: false
+    t.boolean  "status",                           default: false
     t.integer  "accountable_id",     limit: 4
     t.string   "accountable_type",   limit: 255
     t.text     "tokens",             limit: 65535
-    t.datetime "created_at",                                                                   null: false
-    t.datetime "updated_at",                                                                   null: false
-    t.decimal  "latitude",                         precision: 15, scale: 10
-    t.decimal  "longitude",                        precision: 15, scale: 10
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
+    t.float    "latitude",           limit: 24,    default: 0.0
+    t.float    "longitude",          limit: 24,    default: 0.0
   end
 
   add_index "users", ["accountable_type", "accountable_id"], name: "index_users_on_accountable_type_and_accountable_id", using: :btree

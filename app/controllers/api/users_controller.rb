@@ -5,7 +5,7 @@ class Api::UsersController < ApiController
   end
 
   before_action :updatable, only: [:update]
-  before_action :user, only: [:show]
+  before_action :user, only: [:show, :update]
 
   def update
     if @user.update user_params
