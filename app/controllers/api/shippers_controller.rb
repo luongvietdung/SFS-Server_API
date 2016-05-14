@@ -5,7 +5,7 @@ class Api::ShippersController < ApiController
   before_action :updatable, only: [:update]
 
   def index
-    @shippers = Shipper.all.includes :user
+    @shippers = Shipper.online.includes :user
     render json: @shippers, each_serializer: FullShipperSerializer
   end
 

@@ -1,6 +1,6 @@
 class Api::UsersController < ApiController
   def index
-    @users = User.all
+    @users = User.online
     render json: @users, each_serializer: UserAccountableSerializer
   end
 
@@ -9,7 +9,7 @@ class Api::UsersController < ApiController
 
   def update
     if @user.update user_params
-      redirect_to api_users_path(@user)
+      render json: @user, serializer: UserAccountableSerializer
     else
       render_update_fail User.name
     end

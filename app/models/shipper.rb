@@ -3,4 +3,6 @@ class Shipper < ActiveRecord::Base
   accepts_nested_attributes_for :user
 
   SHIPPER_PARAMS = [:money, :fee, :name, :address]
+
+  scope :online, ->{joins(:user).merge User.online}
 end
