@@ -19,7 +19,7 @@ class Api::ShopsController < ApiController
   end
 
   def update
-    if @shop.update shop_update_params
+    if @shop.update(shop_update_params) && @shop.user.update(user_params)
       render json: @shop, serializer: FullShopSerializer
     else
       render_update_fail Shop.name
@@ -37,7 +37,7 @@ class Api::ShopsController < ApiController
   end
 
   def shop_update_params
-    params.require(:shop).permit Shipper::SHIPPER_PARAMS
+    params.require(:shop).permit Shop::SHOP_PARAMS
   end
 
   def shop
@@ -46,5 +46,9 @@ class Api::ShopsController < ApiController
 
   def updatable
     render_access_denied unless current_user == shop.try(:user)
+  end
+
+  def user_params
+    params.require(:shop).permit User::USER_AUTO_UPDATE_PARAMS
   end
 end
