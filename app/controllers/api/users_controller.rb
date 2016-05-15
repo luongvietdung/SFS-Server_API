@@ -4,7 +4,7 @@ class Api::UsersController < ApiController
     render json: @users, each_serializer: UserAccountableSerializer
   end
 
-  before_action :user, only: [:show]
+  before_action :user, only: [:show, :update]
   before_action :updatable, only: [:update]
 
   def update

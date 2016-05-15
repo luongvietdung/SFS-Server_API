@@ -1,7 +1,7 @@
 class Api::ShopsController < ApiController
   skip_before_action :authenticate_user!, only: [:create]
 
-  before_action :shop, only: [:show]
+  before_action :shop, only: [:show, :update]
   before_action :updatable, only: [:update]
 
   def index

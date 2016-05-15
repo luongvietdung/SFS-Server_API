@@ -1,5 +1,4 @@
 class SessionsController < DeviseTokenAuth::SessionsController
-
   def create
     super do
       @resource.update status: true
@@ -7,9 +6,8 @@ class SessionsController < DeviseTokenAuth::SessionsController
   end
 
   def destroy
-    super do
-      @resource.update status: false
-    end
+    @resource.update status: false
+    super
   end
 
   protected
