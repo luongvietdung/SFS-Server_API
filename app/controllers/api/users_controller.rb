@@ -9,7 +9,7 @@ class Api::UsersController < ApiController
 
   def update
     if @user.update user_params
-      render json: @user, serializer: UserAccountableSerializer
+      render json: @user, serializer: UserSerializer
     else
       render_update_fail User.name
     end
