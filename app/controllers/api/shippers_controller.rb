@@ -1,7 +1,7 @@
 class Api::ShippersController < ApiController
   skip_before_action :authenticate_user!, only: [:create]
 
-  before_action :shipper, only: [:show]
+  before_action :shipper, only: [:show, :update]
   before_action :updatable, only: [:update]
 
   def index
