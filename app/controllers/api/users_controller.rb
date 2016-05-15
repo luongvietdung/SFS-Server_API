@@ -4,8 +4,8 @@ class Api::UsersController < ApiController
     render json: @users, each_serializer: UserAccountableSerializer
   end
 
-  before_action :user, only: [:show, :update]
-  before_action :updatable, only: [:update]
+  before_action :user, only: [:show, :update, :destroy]
+  before_action :updatable, only: [:update, :destroy]
 
   def update
     if @user.update user_params
@@ -17,6 +17,11 @@ class Api::UsersController < ApiController
 
   def show
     render json: @user, serializer: UserAccountableSerializer
+  end
+
+  def destroy
+    @user.destroy
+    render json: {success: true}
   end
 
   private

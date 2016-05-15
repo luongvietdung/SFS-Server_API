@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     controllers: {sessions: 'sessions'}
   root "api/users#index"
   namespace :api do
-    resources :users, only: [:update, :show, :index]
+    resources :users, only: [:update, :show, :index, :destroy]
       # resources :locations, only: [:create, :update]
     # end
     resources :shippers, expect: [:new, :edit]
