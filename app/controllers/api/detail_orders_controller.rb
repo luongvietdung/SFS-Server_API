@@ -11,7 +11,8 @@ class Api::DetailOrdersController < ApiController
   end
 
   def create
-    if (@order = @user.detail_orders.build(order_params))
+    @order =  @user.detail_orders.build order_params
+    if @order.save
       render json: @order, serializer: DetailOrderSerializer
     else
       render_create_fail "Order"
