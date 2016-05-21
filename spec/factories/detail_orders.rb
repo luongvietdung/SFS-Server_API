@@ -5,7 +5,7 @@ FactoryGirl.define do
 
     after(:build) do |detail_order|
       detail_order.code = DetailOrder.generate_code(detail_order.user)
-      detail_order.phone_shop = detail_order.user.phone
+      detail_order.phone_customer = Faker::PhoneNumber.cell_phone
       detail_order.phone_shipper = Faker::PhoneNumber.cell_phone
     end
   end

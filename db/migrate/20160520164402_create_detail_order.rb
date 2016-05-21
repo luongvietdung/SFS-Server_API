@@ -2,6 +2,7 @@ class CreateDetailOrder < ActiveRecord::Migration
   def change
     create_table :detail_orders do |t|
       t.references :user, index: true
+      t.string :phone_customer, null: false
       t.string :phone_shop, null: false
       t.string :phone_shipper, null: false
       t.string :code, null: false
