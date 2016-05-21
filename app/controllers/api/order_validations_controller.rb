@@ -1,10 +1,10 @@
 class Api::OrderValidationsController < ApiController
   def create
     @order = DetailOrder.find_by param_validation
-    if @order.update status: true
+    if @order && @order.update status: true
       render json: {message: "Success"}
     else
-      render json: {message: "Fail"}, status: 400
+      render json: {message: "Fail"}, status: 403
     end
   end
 
