@@ -14,15 +14,17 @@
 ActiveRecord::Schema.define(version: 20160520164402) do
 
   create_table "detail_orders", force: :cascade do |t|
-    t.integer "users_id",      limit: 4
-    t.string  "phone_shop",    limit: 255,                 null: false
-    t.string  "phone_shipper", limit: 255,                 null: false
-    t.string  "code",          limit: 255,                 null: false
-    t.string  "code_checking", limit: 255,                 null: false
-    t.boolean "status",                    default: false
+    t.integer  "user_id",       limit: 4
+    t.string   "phone_shop",    limit: 255,                 null: false
+    t.string   "phone_shipper", limit: 255,                 null: false
+    t.string   "code",          limit: 255,                 null: false
+    t.string   "code_checking", limit: 255,                 null: false
+    t.boolean  "status",                    default: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
   end
 
-  add_index "detail_orders", ["users_id"], name: "index_detail_orders_on_users_id", using: :btree
+  add_index "detail_orders", ["user_id"], name: "index_detail_orders_on_user_id", using: :btree
 
   create_table "shippers", force: :cascade do |t|
     t.decimal  "money",                    precision: 10, scale: 2

@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   USER_PARAMS = [:phone, :password, :password_confirmation] + USER_AUTO_UPDATE_PARAMS
 
   belongs_to :accountable, polymorphic: true, dependent: :destroy
+  has_many :detail_orders, dependent: :destroy
   # has_one :location
 
   before_save :sync_uid
