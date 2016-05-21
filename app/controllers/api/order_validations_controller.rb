@@ -1,4 +1,4 @@
-class Api::OrderValidation < ApiController
+class Api::OrderValidationsController < ApiController
   def create
     @order = DetailOrder.find_by param_validation
     if @order.update status: true
